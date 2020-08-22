@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <form id="frmCalc">
+
+        <h2>Input</h2>
+        <label for="queryInput">Put your DDL query here</label>
+        <textarea cols="50" rows="10" id="queryInput" name="queryInput"></textarea>
+        <br>
+        <label for="txtDataVolume">How many data?</label>
+        <input type="text" name="txtDataVolume" id="txtDataVolume">
+        <select id="selMeasure" name="selMeasure">
+        <option>KB</option>
+        <option>MB</option>
+        <option>GB</option>
+    </select> in one
+        <input type="radio" name="rbPeriod" id="pDay" value="Day">
+        <label for="pDay">day</label>
+        <input type="radio" name="rbPeriod" id="pMonth" value="Month" checked="true">
+        <label for="pMonth">month</label>
+
+        <br>
+        <input type="submit" value="Calcular">
+
+    </form>
+
+    <br>
+    <hr>
+    <h2>Results</h2>
+    <table>
+        <thead>
+            <!-- <th>Fields</th> -->
+            <th><span id="thBytes"></span></th>
+            <th><span id="rsPeriod1"></span></th>
+            <th><span id="rsPeriod2"></span></th>
+        </thead>
+        <tr>
+            <!-- <td><span id="resFields"></span></td> -->
+            <td><span id="resBytes"></span></td>
+            <td><span id="rsAmount1"></span></td>
+            <td><span id="rsAmount2"></span></td>
+        </tr>
+    </table>
+</body>
+<script src="calc.js"></script>
+
+</html>
