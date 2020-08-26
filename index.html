@@ -4,50 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
+    <title>Calculadora de Banco de Dados</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/grid.css">
+    <link rel="stylesheet" href="style/form.css">
 </head>
 
 <body>
-    <form id="frmCalc">
+    <div class="grid-container">
+        <header class="header">
+            <h1>Calculadora de Banco de Dados</h1>
+            <p>Calcule espaço em disco necessário para seu banco de dados</p>
+        </header>
+        <main class="main">
+            <form id="frmCalc">
+                <div class="full_width">
+                    <label for="queryInput">Cole aqui o script que cria suas tabelas</label><br>
+                    <textarea cols="50" rows="10" id="queryInput" name="queryInput"></textarea>
+                </div>
+                <div>
+                    <label for="txtDataVolume">Quantidade de dados estimada</label><br>
+                    <input type="text" name="txtDataVolume" id="txtDataVolume">
+                    <select id="selMeasure" name="selMeasure">
+                        <option>KB</option>
+                        <option>MB</option>
+                        <option>GB</option>
+                    </select>
+                </div>
+                <div>
+                    em um<br>
+                    <input type="radio" name="rbPeriod" id="pDay" value="Day">
+                    <label for="pDay">dia</label> /
+                    <input type="radio" name="rbPeriod" id="pMonth" value="Month" checked="true">
+                    <label for="pMonth">mês</label>
+                </div>
+                <div class="full_width center">
+                    <input type="submit" value="Calcular">
+                </div>
+            </form>
 
-        <h2>Input</h2>
-        <label for="queryInput">Put your DDL query here</label>
-        <textarea cols="50" rows="10" id="queryInput" name="queryInput"></textarea>
-        <br>
-        <label for="txtDataVolume">How many data?</label>
-        <input type="text" name="txtDataVolume" id="txtDataVolume">
-        <select id="selMeasure" name="selMeasure">
-        <option>KB</option>
-        <option>MB</option>
-        <option>GB</option>
-    </select> in one
-        <input type="radio" name="rbPeriod" id="pDay" value="Day">
-        <label for="pDay">day</label>
-        <input type="radio" name="rbPeriod" id="pMonth" value="Month" checked="true">
-        <label for="pMonth">month</label>
+            <section>
+                <h2>Results</h2>
+                <table>
+                    <thead>
+                        <!-- <th>Fields</th> -->
+                        <th><span id="thBytes"></span></th>
+                        <th><span id="rsPeriod1"></span></th>
+                        <th><span id="rsPeriod2"></span></th>
+                    </thead>
+                    <tr>
+                        <!-- <td><span id="resFields"></span></td> -->
+                        <td><span id="resBytes"></span></td>
+                        <td><span id="rsAmount1"></span></td>
+                        <td><span id="rsAmount2"></span></td>
+                    </tr>
+                </table>
+            </section>
+            <article class="about">
+                <h1>Sobre a Calculadora</h1>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nesciunt soluta inventore minus autem deleniti atque voluptatum et quae veritatis numquam rerum quis at, adipisci harum? Aperiam deleniti dicta quos?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam mollitia obcaecati animi quam, sint, et, ipsa facilis aut nulla dolore praesentium maiores perferendis hic quasi atque architecto pariatur perspiciatis eveniet? Lorem ipsum
+                    dolor sit, amet consectetur adipisicing elit. Accusamus corporis, repellat, dicta possimus neque magni enim placeat alias nihil fugit rerum iste. Soluta minus rem nesciunt aliquam illo eum nisi! Lorem ipsum dolor, sit amet consectetur
+                    adipisicing elit. Quasi consectetur, voluptatem blanditiis doloribus ut itaque vero a. Dignissimos, quia quaerat accusamus ipsam ipsa accusantium? Explicabo, inventore! Deserunt libero blanditiis temporibus.</p>
+                <h2>Melhorias</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, quas consectetur eaque voluptate qui dolorem dicta obcaecati molestias. Inventore aliquam id architecto accusantium labore placeat pariatur ipsa saepe illum accusamus!</p>
+            </article>
+        </main>
+        <aside class="aside">
+            Google Ads
+        </aside>
+        <footer class="footer">
+            &copy;200.systems
+        </footer>
+    </div>
 
-        <br>
-        <input type="submit" value="Calcular">
 
-    </form>
-
-    <br>
-    <hr>
-    <h2>Results</h2>
-    <table>
-        <thead>
-            <!-- <th>Fields</th> -->
-            <th><span id="thBytes"></span></th>
-            <th><span id="rsPeriod1"></span></th>
-            <th><span id="rsPeriod2"></span></th>
-        </thead>
-        <tr>
-            <!-- <td><span id="resFields"></span></td> -->
-            <td><span id="resBytes"></span></td>
-            <td><span id="rsAmount1"></span></td>
-            <td><span id="rsAmount2"></span></td>
-        </tr>
-    </table>
 </body>
 <script src="calc.js"></script>
 
