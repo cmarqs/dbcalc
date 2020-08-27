@@ -1,0 +1,107 @@
+html {
+    font-family: Montserrat;
+    font-style: normal;
+    color: #000000;
+    margin: 5px auto auto 25px;
+}
+
+body {
+    font-size: medium;
+    line-height: 1.4rem;
+}
+
+h1 {
+    /* Titulo */
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 40px;
+    margin-bottom: .3em;
+}
+
+h1::before {
+    display: inline-block;
+    content: ".";
+    width: .2em;
+    margin: 0 .2em 0 -.5em;
+    background-color: #e27047;
+    color: #e27047;
+}
+
+h2 {
+    /* Consumo de espaço estimado */
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.03em;
+    color: #000000;
+    margin-top: 2em;
+}
+
+section {
+    margin-bottom: 5em;
+}
+
+p {
+    line-height: 1.7em;
+    margin: 1em auto 1em auto;
+}
+
+p.subtitle {
+    /* SubTitulo */
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.03em;
+    color: #000000;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 3em;
+}
+
+li {
+    line-height: 1.7em;
+}
+
+
+/*TABELA DE RESULTADOS */
+
+table {
+    width: calc(100% - 10px);
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+thead th {
+    background-color: #e27047;
+    height: 40px;
+    vertical-align: middle;
+}
+
+th>span {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+tbody td {
+    background-color: #ffffff;
+    height: 40px;
+    vertical-align: middle;
+}
+
+td>span {
+    margin-left: 10px;
+    color: #000000;
+    font-weight: bolder;
+}
+
+div.ads-conteiner {
+    text-align: center;
+    min-width: 200px;
+}
+
+footer {
+    text-align: center;
+}
