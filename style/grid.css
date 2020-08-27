@@ -16,9 +16,8 @@ footer {
 
 .grid-container {
     display: grid;
-    grid-template-areas: 'header header header header' 'main main main        aside' 'footer footer footer  aside';
-    grid-gap: 10px;
-    background-color: #e27047;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-areas: 'header header header header' 'main main main aside' 'footer footer footer  aside';
     padding: 10px;
 }
 
@@ -30,5 +29,4 @@ footer {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: left;
     padding: 20px 0;
-    font-size: 30px;
 }

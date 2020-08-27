@@ -113,10 +113,6 @@ function getMatch(queryCreateTable) {
     })
 
     return totalBytes;
-    // calcAll(totalBytes, 0, document.querySelector('#txtDataVolume').value, 'day')
-
-    // document.querySelector('span#resFields').textContent = words.length;
-    // document.querySelector('span#resBytes').textContent = totalBytes;
 }
 
 function calcIndexes(text) {
@@ -161,14 +157,14 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
         outP1 = (totalBytesFields + totalBytesIndex) * volKb * 30.41; // volumn by month in kb
         outP2 = (totalBytesFields + totalBytesIndex) * volKb * 365; // volumn by year in kb
 
-        document.querySelector('span#rsPeriod1').textContent = 'Month';
+        document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 MÊS';
     } else {
         outP1 = (totalBytesFields + totalBytesIndex) * volKb / 30.41; // volumn by day
         outP2 = (totalBytesFields + totalBytesIndex) * volKb * 12; // volumn by year
 
-        document.querySelector('span#rsPeriod1').textContent = 'Day';
+        document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 DIA';
     }
-    document.querySelector('span#rsPeriod2').textContent = 'Year';
+    document.querySelector('span#rsPeriod2').textContent = 'Estimativa 1 ANO';
 
     let totalMb = outP1 / 1024;
     let totalGb = outP2 / 1e+6;
@@ -176,7 +172,7 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
     // console.log(totalMb)
 
     document.querySelector('span#resBytes').textContent = `${totalBytesFields} KB`
-    document.querySelector('span#thBytes').textContent = 'Qtd Bytes';
+    document.querySelector('span#thBytes').textContent = 'Tabela vazia';
     document.querySelector('span#rsAmount1').textContent = `${parseFloat(totalMb).toFixed(2)} MB`;
     document.querySelector('span#rsAmount2').textContent = `${parseFloat(totalGb).toFixed(2)} GB`;
 
