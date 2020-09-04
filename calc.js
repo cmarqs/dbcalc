@@ -113,10 +113,6 @@ function getMatch(queryCreateTable) {
     })
 
     return totalBytes;
-    // calcAll(totalBytes, 0, document.querySelector('#txtDataVolume').value, 'day')
-
-    // document.querySelector('span#resFields').textContent = words.length;
-    // document.querySelector('span#resBytes').textContent = totalBytes;
 }
 
 function calcIndexes(text) {
@@ -124,22 +120,22 @@ function calcIndexes(text) {
     let words = [...text.matchAll(regex)];
 }
 
-function standardVolumeInKb(volume, medida) {
+/*
+ * Padroniza o volume em kb, mb ou gb em bytes (para a mesma base da lógica de tabela vazia)
+ */
+function standardVolumeInBytes(volume, medida) {
+    //se for passado 0 kb/mb/gb, considero 1byte
+    if (volume == 0)
+        return 1;
+
     switch (medida) {
         case 'KB':
-            volume = (volume == 0 ? 1 : volume)
-            break;
+            return volume * 1000 //1kb = 1000bytes
         case 'MB':
-            volume = (volume == 0 ? 0.001 : volume / 1000)
-            break;
+            return volume * 1000000 //1mb = 1e+6bytes
         case 'GB':
-            volume = (volume == 0 ? 0.000001 : volume / 1e+6)
-            break;
-        default:
-            volume = 1;
-            break;
+            return volume * 1000000000 //1gb = 1e+9bytes
     }
-    return volume;
 }
 
 /*
@@ -155,28 +151,36 @@ function standardVolumeInKb(volume, medida) {
 function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida = 'KB', periodoIn = 'Day') {
 
     //padroniza o volume em kb
-    let volKb = standardVolumeInKb(volume, medida);
+    let volBytes = standardVolumeInBytes(volume, medida);
     let outP1, outP2;
+
     if (periodoIn == 'Day') {
-        outP1 = (totalBytesFields + totalBytesIndex) * volKb * 30.41; // volumn by month in kb
-        outP2 = (totalBytesFields + totalBytesIndex) * volKb * 365; // volumn by year in kb
+        //se o volume for por dia, mostra por mês e ano
+        outP1 = (totalBytesFields + totalBytesIndex) * volBytes * 30.41; // volumn by month in bytes
+        outP2 = (totalBytesFields + totalBytesIndex) * volBytes * 365; // volumn by year in bytes
+        console.log(`outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 30.41 > ${outP1}`)
+        console.log(`outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 365 > ${outP2}`)
 
-        document.querySelector('span#rsPeriod1').textContent = 'Month';
+        document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 MÊS';
     } else {
-        outP1 = (totalBytesFields + totalBytesIndex) * volKb / 30.41; // volumn by day
-        outP2 = (totalBytesFields + totalBytesIndex) * volKb * 12; // volumn by year
+        //se o volume for por mês, mostra o calculo por dia e por ano
+        outP1 = (totalBytesFields + totalBytesIndex) * volBytes / 30.41; // volumn by day bytes
+        outP2 = (totalBytesFields + totalBytesIndex) * volBytes * 12; // volumn by year bytes
+        console.log(`outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} / 30.41 > ${outP1}`)
+        console.log(`outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 12 > ${outP2}`)
 
-        document.querySelector('span#rsPeriod1').textContent = 'Day';
+        document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 DIA';
     }
-    document.querySelector('span#rsPeriod2').textContent = 'Year';
+    document.querySelector('span#rsPeriod2').textContent = 'Estimativa 1 ANO';
 
-    let totalMb = outP1 / 1024;
-    let totalGb = outP2 / 1e+6;
+    let totalKbEmpty = totalBytesFields / 1000; //kb
+    let totalMb = outP1 / 1e+6;
+    let totalGb = outP2 / 1e+9;
 
     // console.log(totalMb)
 
-    document.querySelector('span#resBytes').textContent = `${totalBytesFields} KB`
-    document.querySelector('span#thBytes').textContent = 'Qtd Bytes';
+    document.querySelector('span#resBytes').textContent = `${totalKbEmpty} KB`
+    document.querySelector('span#thBytes').textContent = 'Tabela vazia';
     document.querySelector('span#rsAmount1').textContent = `${parseFloat(totalMb).toFixed(2)} MB`;
     document.querySelector('span#rsAmount2').textContent = `${parseFloat(totalGb).toFixed(2)} GB`;
 

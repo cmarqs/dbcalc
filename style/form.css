@@ -1,0 +1,39 @@
+form {
+    /* grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    /* style */
+}
+
+.full_width {
+    grid-column: 1 / 3;
+}
+
+.center {
+    text-align: center;
+}
+
+
+/* Estilos do formulário*/
+
+textarea {
+    width: calc(100% - 10px);
+}
+
+input[type=text] {
+    width: calc(30%);
+}
+
+input[type=submit] {
+    /* botão */
+    width: 435px;
+    background: #1F5B93;
+    font-weight: bolder;
+    font-size: 14px;
+    line-height: 25px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin: 20px;
+    border-style: solid;
+}

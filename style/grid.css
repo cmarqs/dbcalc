@@ -1,0 +1,32 @@
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+}
+
+aside {
+    grid-area: aside;
+}
+
+footer {
+    grid-area: footer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-areas: 'header header header header' 'main main main aside' 'footer footer footer  aside';
+    padding: 10px;
+}
+
+.grid-container>header,
+main,
+article,
+aside,
+footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    padding: 20px 0;
+}
