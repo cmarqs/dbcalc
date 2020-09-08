@@ -149,7 +149,6 @@ function standardVolumeInBytes(volume, medida) {
     periodoIn = periodo selecionado no formulário (name=period)
 */
 function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida = 'KB', periodoIn = 'Day') {
-
     //padroniza o volume em kb
     let volBytes = standardVolumeInBytes(volume, medida);
     let outP1, outP2;
@@ -169,8 +168,8 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
     outP1 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodMonth; // volumn by month in bytes
     outP2 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodYear; // volumn by year in bytes
 
-    console.log(`Day: outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 30.41 > ${outP1}`)
-    console.log(`Day: outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 365 > ${outP2}`)
+    console.log(`${periodoIn}: outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * ${valPeriodMonth} = ${outP1}`)
+    console.log(`${periodoIn}: outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * ${valPeriodYear} = ${outP2}`)
 
     let totalKbEmpty = totalBytesFields / 1000; //kb
     let totalMb = outP1 / 1e+6;
