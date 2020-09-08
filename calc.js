@@ -162,10 +162,6 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
         valPeriodYear = 12 //meses por ano
     }
 
-    /* Exibe */
-    document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 MÊS';
-    document.querySelector('span#rsPeriod2').textContent = 'Estimativa 1 ANO';
-
     /*Se não for informada a quantidade de linhas previstas, repito o total do banco vazio*/
     if (volBytes == 0) {
         outP1 = (totalBytesFields + totalBytesIndex);
