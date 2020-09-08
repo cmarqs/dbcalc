@@ -126,7 +126,7 @@ function calcIndexes(text) {
 function standardVolumeInBytes(volume, medida) {
     //se for passado 0 kb/mb/gb, considero 1byte
     if (volume == 0)
-        return 1;
+        return 0;
 
     switch (medida) {
         case 'KB':
@@ -148,30 +148,29 @@ function standardVolumeInBytes(volume, medida) {
     amountData = volume de dados previsto (ou existente) no período apontado no formulário (name=period)
     periodoIn = periodo selecionado no formulário (name=period)
 */
-function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida = 'KB', periodoIn = 'Day') {
-
-    //padroniza o volume em kb
-    let volBytes = standardVolumeInBytes(volume, medida);
+function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, qtdLinhas = 0, medida = 'KB', periodoIn = 'Day') {
     let outP1, outP2;
+    let valPeriodMonth, valPeriodYear = 0;
 
     if (periodoIn == 'Day') {
-        //se o volume for por dia, mostra por mês e ano
-        outP1 = (totalBytesFields + totalBytesIndex) * volBytes * 30.41; // volumn by month in bytes
-        outP2 = (totalBytesFields + totalBytesIndex) * volBytes * 365; // volumn by year in bytes
-        console.log(`outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 30.41 > ${outP1}`)
-        console.log(`outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 365 > ${outP2}`)
-
-        document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 MÊS';
+        valPeriodMonth = 30.41 //media de dias por mês
+        valPeriodYear = 365; //dias por ano
     } else {
-        //se o volume for por mês, mostra o calculo por dia e por ano
-        outP1 = (totalBytesFields + totalBytesIndex) * volBytes / 30.41; // volumn by day bytes
-        outP2 = (totalBytesFields + totalBytesIndex) * volBytes * 12; // volumn by year bytes
-        console.log(`outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} / 30.41 > ${outP1}`)
-        console.log(`outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * 12 > ${outP2}`)
-
-        document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 DIA';
+        valPeriodMonth = 1; //meses por mes
+        valPeriodYear = 12 //meses por ano
     }
-    document.querySelector('span#rsPeriod2').textContent = 'Estimativa 1 ANO';
+
+    /*Se não for informada a quantidade de linhas previstas, repito o total do banco vazio*/
+    if (qtdLinhas == 0) {
+        outP1 = (totalBytesFields + totalBytesIndex);
+        outP2 = outP1;
+    } else {
+        outP1 = (totalBytesFields + totalBytesIndex) * qtdLinhas * valPeriodMonth; // volumn by month in bytes
+        outP2 = (totalBytesFields + totalBytesIndex) * qtdLinhas * valPeriodYear; // volumn by year in bytes
+
+        console.log(`${periodoIn}: outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${qtdLinhas} * ${valPeriodMonth} = ${outP1}`)
+        console.log(`${periodoIn}: outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${qtdLinhas} * ${valPeriodYear} = ${outP2}`)
+    }
 
     let totalKbEmpty = totalBytesFields / 1000; //kb
     let totalMb = outP1 / 1e+6;
@@ -183,7 +182,6 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
     document.querySelector('span#thBytes').textContent = 'Tabela vazia';
     document.querySelector('span#rsAmount1').textContent = `${parseFloat(totalMb).toFixed(2)} MB`;
     document.querySelector('span#rsAmount2').textContent = `${parseFloat(totalGb).toFixed(2)} GB`;
-
 }
 
 const formSerialize = formElement => {
