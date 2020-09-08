@@ -52,21 +52,18 @@
                         <label for="queryInput">Cole aqui o seu script DDL (estrutura de criação das tabelas)</label><br>
                         <textarea rows="10" id="queryInput" name="queryInput"></textarea>
                     </div>
+                    <br>
                     <div class="full_width">
-                        <label for="txtDataVolume">Quantidade de dados estimada por dia ou mês (deixe vazio se o banco for novo)</label>
+                        <label for="txtDataVolume">Qual a quantidade estimada de novos registros?</label>
                     </div>
-                    <div>
-                        <input type="text" name="txtDataVolume" id="txtDataVolume">
-                        <select id="selMeasure" name="selMeasure">
-                        <option>KB</option>
-                        <option>MB</option>
-                        <option>GB</option>
-                    </select> por&nbsp;
+                    <div class="full_width">
+                        <input type="text" name="txtDataVolume" id="txtDataVolume"> por&nbsp;
                         <input type="radio" name="rbPeriod" id="pDay" value="Day">
                         <label for="pDay">dia</label>&nbsp;/&nbsp;
                         <input type="radio" name="rbPeriod" id="pMonth" value="Month" checked="true">
                         <label for="pMonth">mês</label>
                     </div>
+                    <br>
                     <div class="full_width center">
                         <input type="submit" value="Calcular">
                     </div>
