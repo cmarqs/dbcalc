@@ -165,8 +165,15 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
     /* Exibe */
     document.querySelector('span#rsPeriod1').textContent = 'Estimativa 1 MÊS';
     document.querySelector('span#rsPeriod2').textContent = 'Estimativa 1 ANO';
-    outP1 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodMonth; // volumn by month in bytes
-    outP2 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodYear; // volumn by year in bytes
+
+    /*Se não for informada a quantidade de linhas previstas, repito o total do banco vazio*/
+    if (volBytes == 0) {
+        outP1 = (totalBytesFields + totalBytesIndex);
+        outP2 = outP1;
+    } else {
+        outP1 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodMonth; // volumn by month in bytes
+        outP2 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodYear; // volumn by year in bytes
+    }
 
     console.log(`${periodoIn}: outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * ${valPeriodMonth} = ${outP1}`)
     console.log(`${periodoIn}: outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * ${valPeriodYear} = ${outP2}`)
