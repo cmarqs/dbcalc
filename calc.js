@@ -148,9 +148,7 @@ function standardVolumeInBytes(volume, medida) {
     amountData = volume de dados previsto (ou existente) no período apontado no formulário (name=period)
     periodoIn = periodo selecionado no formulário (name=period)
 */
-function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida = 'KB', periodoIn = 'Day') {
-    //padroniza o volume em kb
-    let volBytes = standardVolumeInBytes(volume, medida);
+function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, qtdLinhas = 0, medida = 'KB', periodoIn = 'Day') {
     let outP1, outP2;
     let valPeriodMonth, valPeriodYear = 0;
 
@@ -163,15 +161,15 @@ function showCalcs(totalBytesFields = 0, totalBytesIndex = 0, volume = 0, medida
     }
 
     /*Se não for informada a quantidade de linhas previstas, repito o total do banco vazio*/
-    if (volBytes == 0) {
+    if (qtdLinhas == 0) {
         outP1 = (totalBytesFields + totalBytesIndex);
         outP2 = outP1;
     } else {
-        outP1 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodMonth; // volumn by month in bytes
-        outP2 = (totalBytesFields + totalBytesIndex) * volBytes * valPeriodYear; // volumn by year in bytes
+        outP1 = (totalBytesFields + totalBytesIndex) * qtdLinhas * valPeriodMonth; // volumn by month in bytes
+        outP2 = (totalBytesFields + totalBytesIndex) * qtdLinhas * valPeriodYear; // volumn by year in bytes
 
-        console.log(`${periodoIn}: outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * ${valPeriodMonth} = ${outP1}`)
-        console.log(`${periodoIn}: outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${volBytes} * ${valPeriodYear} = ${outP2}`)
+        console.log(`${periodoIn}: outP1 = (${totalBytesFields} + ${totalBytesIndex}) * ${qtdLinhas} * ${valPeriodMonth} = ${outP1}`)
+        console.log(`${periodoIn}: outP2 = (${totalBytesFields} + ${totalBytesIndex}) * ${qtdLinhas} * ${valPeriodYear} = ${outP2}`)
     }
 
     let totalKbEmpty = totalBytesFields / 1000; //kb
